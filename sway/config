@@ -1,0 +1,222 @@
+# Sway configuration.
+
+# Logo key. Use Mod1 for Alt, Mod4 for command.
+set $mod Mod1
+
+set $term alacritty
+
+# Displays
+set $laptop eDP-1
+# FIXME gpu problems?
+# set $monitor DP-1
+# set $monitor_right DP-2
+# output $laptop position 0,1800
+# output $monitor_left position 0,0
+# output $monitor_right position 1920,0
+# workspace 2 output $monitor_right
+
+bindswitch lid:on output $laptop disable
+bindswitch lid:off output $laptop enable
+
+# Set the background image
+output "*" bg $HOME/wallpaper.png fill
+
+input "*" {
+    xkb_options ctrl:swapcaps
+
+    # libinput config
+    accel_profile flat
+    click_method clickfinger
+    drag disabled
+    drag_lock disabled
+    dwt enabled
+    left_handed disabled
+    middle_emulation enabled
+    natural_scroll disabled
+    pointer_accel 1
+    scroll_method two_finger
+    tap disabled
+}
+
+# Font for window titles.
+font pango:DejaVu Sans Mono 12
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec $term
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start program launcher
+set $menu exec $term --class launcher --title launcher -e bash -c 'compgen -c | sort -u | fzf | xargs swaymsg exec --'
+bindsym $mod+d exec $menu
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+shift+v split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+bindsym $mod+q focus child
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+mode "exit" {
+    bindsym e exit
+    bindsym l mode "default"; exec swaylock -c 000000
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym Control+bracketleft mode "default"
+}
+bindsym $mod+Shift+e mode "exit"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+    # These bindings trigger as soon as you enter the resize mode
+
+    # Pressing left will shrink the window’s width.
+    # Pressing right will grow the window’s width.
+    # Pressing up will shrink the window’s height.
+    # Pressing down will grow the window’s height.
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym Control+bracketleft mode "default"
+}
+bindsym $mod+r mode "resize"
+
+mode "move" {
+    bindsym h move workspace to output left; mode "default"
+    bindsym j move workspace to output down; mode "default"
+    bindsym k move workspace to output up; mode "default"
+    bindsym l move workspace to output right; mode "default"
+
+    bindsym Left move workspace to output left; mode "default"
+    bindsym Down move workspace to output down; mode "default"
+    bindsym Up move workspace to output up; mode "default"
+    bindsym Right move workspace to output right; mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym Control+bracketleft mode "default"
+}
+bindsym $mod+m mode "move"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+    colors {
+        background #002b36
+        statusline #839496
+        separator  #586e75
+        focused_workspace  #b58900 #b58900 #002b36
+        active_workspace   #586e75 #586e75 #002b36
+        inactive_workspace #073642 #002b36 #839496
+        urgent_workspace   #dc322f #dc322f #fdf6e3
+    }
+    status_command i3status -c ~/.config/sway/i3status.conf
+    tray_output $laptop
+}
+
+#                       border   background  text     indicator  child_border
+client.focused          #002b36  #586e75     #fdf6e3  #268bd2    #586e75
+client.focused_inactive #002b36  #073642     #839496  #073642    #586e75
+client.unfocused        #002b36  #073642     #839496  #073642    #586e75
+client.urgent           #002b36  #dc322f     #fdf6e3  #002b36    #586e75
+
+set $backlight /sys/class/backlight/intel_backlight/brightness
+bindsym XF86MonBrightnessUp exec echo $(( $(cat $backlight) + 1000 )) > $backlight
+bindsym XF86MonBrightnessDown exec echo $(( $(cat $backlight) - 1000 )) > $backlight
+
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
+bindsym XF86AudioRaiseVolume exec pactl -- set-sink-volume 0 +2%
+bindsym XF86AudioLowerVolume exec pactl -- set-sink-volume 0 -2%
+
+# Notifications
+bindsym $mod+n exec makoctl dismiss
+bindsym $mod+shift+n exec makoctl restore
+exec mako
