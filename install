@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+readonly CONFIG_DIR="${HOME}/.config"
+readonly CONFIG_SUBMODULES="${CONFIG_DIR}/submodules"
+readonly BASHRC="${HOME}/.bashrc"
+
+install_shell_config() {
+    echo '' >> "${BASHRC}"
+    echo "eval \$(dircolors "${CONFIG_SUBMODULES}/dircolors-solarized/dircolors.ansi-dark")" \
+        >> "${BASHRC}"
+
+    local -r alacritty_dir="${CONFIG_DIR}/alacritty"
+    local -r alacritty_config="${alacritty_dir}/alacritty.yml"
+    mkdir -p "${alacritty_dir}"
+    touch "${alacritty_config}"
+    cat "${CONFIG_SUBMODULES}/alacritty-theme/themes/solarized_dark.yaml" >> "${alacritty_config}"
+}
+
+install_system_config() {
+    cp "${CONFIG_DIR}/misc/45-backlight.rules" /etc/udev/rules.d/
+}
+
+install_editor_config() {
+    local -r editor=nvim
+
+    echo '' >> "${BASHRC}"
+    echo "EDITOR=${editor}" >> "${BASHRC}"
+    echo "SUDO_EDITOR=${editor}" >> "${BASHRC}"
+    echo "alias vim=${editor}" >> "${BASHRC}"
+
+    git config --global core.editor "${editor}"
+}
+
+install_git_config() {
+    git config --global commit.gpgsign true
+}
+
+main() {
+    pushd "${CONFIG_DIR}"
+
+    git sumbodule update --init --recursive
+
+    install_shell_config
+    install_editor_config
+    install_git_config
+
+    popd
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    set -ex
+    main "$@"
+fi
