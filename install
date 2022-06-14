@@ -33,6 +33,7 @@ install_editor_config() {
 
 install_git_config() {
     git config --global commit.gpgsign true
+    git config --global core.excludesfile "${CONFIG_DIR}/misc/gitignore_global"
 }
 
 main() {
