@@ -19,6 +19,19 @@ install_shell_config() {
     mkdir -p "${alacritty_dir}"
     touch "${alacritty_config}"
     cat "${CONFIG_SUBMODULES}/alacritty-theme/themes/solarized_dark.yaml" >> "${alacritty_config}"
+
+    cat << EOF >> "${BASHRC}"
+
+SSH_ENV_FILE="/${HOME}/.ssh/.agent.env"
+if ! pgrep ssh-agent > /dev/null; then
+    ssh-agent | grep -v 'echo' > "${SSH_ENV_FILE}"
+fi
+source "${SSH_ENV_FILE}"
+unset SSH_ENV_FILE
+if ! ssh-add -lq > /dev/null; then
+    ssh-add
+fi
+EOF
 }
 
 install_system_config() {
