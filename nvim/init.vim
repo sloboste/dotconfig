@@ -60,12 +60,8 @@ set wildignore+=*.zip,*.tar.gz
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
 set wildignore+=.git,.svn,.hg
 
-" FIXME check if language server is sufficient
-" Tell ctags to look for tags file in directories above if not found in current
+" Tell ctags to look for tags file in directories above if not found in current.
 set tags=tags;/
-" autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/
-" autocmd BufWrite *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" <bar> redraw!
-" autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/,$RUST_SRC_PATH/rusty-tags.vi
 
 " Let modified buffers stay around in the background
 set hidden
@@ -75,11 +71,10 @@ set termguicolors
 set background=dark
 colorscheme solarized
 
-" FIXME investigate python language server and disable syntastic
-" NO Syntastic on these filetypes
+" No Syntastic on these filetypes
 let g:syntastic_mode_map = {
     \ "mode": "active",
-    \ "passive_filetypes": ["c", "cc", "cpp", "h", "hpp", "rs", "rust"]}
+    \ "passive_filetypes": ["c", "cc", "cpp", "h", "hpp", "python", "rs", "rust"]}
 
 " Syntastic status line
 set statusline+=%#warningmsg#
@@ -141,14 +136,64 @@ let g:vim_json_syntax_conceal = 0
 
 " Language Server syntax checking
 lua << EOF
-    require'lspconfig'.clangd.setup{}
+    -- Mappings.
+    -- See `:help vim.diagnostic.*` for documentation on any of the below functions
+    local opts = { noremap=true, silent=true }
+    vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+    vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+
+    -- Use an on_attach function to only map the following keys
+    -- after the language server attaches to the current buffer
+    local on_attach = function(client, bufnr)
+        -- Enable completion triggered by <c-x><c-o>
+        vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+        -- Mappings.
+        -- See `:help vim.lsp.*` for documentation on any of the below functions
+        local bufopts = { noremap=true, silent=true, buffer=bufnr }
+        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+        -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+        -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+        -- vim.keymap.set(
+        --     'n',
+        --     '<space>wl',
+        --     function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
+        --     bufopts
+        -- )
+        vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+        vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+        vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+        vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+    end
+
+    local lsp_flags = {
+        -- This is the default in Nvim 0.7+
+        debounce_text_changes = 150,
+    }
+    require('lspconfig')['clangd'].setup{
+        on_attach = on_attach,
+        flags = lsp_flags,
+    }
+    require('lspconfig')['rust_analyzer'].setup{
+        on_attach = on_attach,
+        flags = lsp_flags,
+        -- Server-specific settings...
+        settings = {
+            ["rust-analyzer"] = {}
+        }
+    }
+    require('lspconfig')['pyright'].setup{
+        on_attach = on_attach,
+        flags = lsp_flags,
+    }
 EOF
-
-" Don't start the language client if we see a special file.
-let g:LanguageClient_autoStart = empty(glob(".disable_neovim_language_client"))
-
-" FIXME?
-" nnoremap <silent> <C-]> :call LanguageClient_textDocument_definition()<CR>
 
 " SimpylFold better Python code folding
 let g:SimpylFold_fold_import = 0
