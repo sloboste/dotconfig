@@ -23,6 +23,7 @@ install_shell_config() {
 
 install_system_config() {
     cp "${CONFIG_DIR}/misc/45-backlight.rules" /etc/udev/rules.d/
+    cp "${CONFIG_DIR}/sway/sway-nvidia.desktop" /usr/share/wayland-sessions/
 }
 
 install_editor_config() {
