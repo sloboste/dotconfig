@@ -5,14 +5,13 @@ readonly CONFIG_SUBMODULES="${CONFIG_DIR}/submodules"
 readonly BASHRC="${HOME}/.bashrc"
 
 install_shell_config() {
-    echo '' >> "${BASHRC}"
-    # shellcheck disable=SC2016
-    echo 'export PATH="${PATH}:${HOME}/.local/bin"' >> "${BASHRC}"
     mkdir -p "${HOME}/.local/bin"
+    cat << EOF >> "${BASHRC}"
 
-    echo '' >> "${BASHRC}"
-    echo "eval \$(dircolors "${CONFIG_SUBMODULES}/dircolors-solarized/dircolors.ansi-dark")" \
-        >> "${BASHRC}"
+export PATH="${PATH}:${HOME}/.local/bin"
+
+eval \$(dircolors "${CONFIG_SUBMODULES}/dircolors-solarized/dircolors.ansi-dark")
+EOF
 
     local -r alacritty_dir="${CONFIG_DIR}/alacritty"
     local -r alacritty_config="${alacritty_dir}/alacritty.yml"
@@ -42,10 +41,12 @@ install_system_config() {
 install_editor_config() {
     local -r editor=nvim
 
-    echo '' >> "${BASHRC}"
-    echo "EDITOR=${editor}" >> "${BASHRC}"
-    echo "SUDO_EDITOR=${editor}" >> "${BASHRC}"
-    echo "alias vim=${editor}" >> "${BASHRC}"
+    cat << EOF >> "${BASHRC}"
+
+EDITOR=${editor}"
+SUDO_EDITOR=${editor}"
+alias vim=${editor}"
+EOF
 
     git config --global core.editor "${editor}"
 }
