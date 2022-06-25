@@ -6,6 +6,11 @@ readonly BASHRC="${HOME}/.bashrc"
 
 install_shell_config() {
     echo '' >> "${BASHRC}"
+    # shellcheck disable=SC2016
+    echo 'export PATH="${PATH}:${HOME}/.local/bin"' >> "${BASHRC}"
+    mkdir -p "${HOME}/.local/bin"
+
+    echo '' >> "${BASHRC}"
     echo "eval \$(dircolors "${CONFIG_SUBMODULES}/dircolors-solarized/dircolors.ansi-dark")" \
         >> "${BASHRC}"
 
