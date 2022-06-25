@@ -6,6 +6,8 @@ readonly CONFIG_SUBMODULES="${CONFIG_DIR}/submodules"
 readonly BASHRC="${HOME}/.bashrc"
 
 install_shell_config() {
+    cp "${CONFIG_MISC_DIR}/.inputrc" "${HOME}/"
+
     mkdir -p "${HOME}/.local/bin"
     cat << EOF >> "${BASHRC}"
 
