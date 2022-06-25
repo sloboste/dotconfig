@@ -30,14 +30,6 @@ Plug 'sloboste/vim-groovy-syntax'
 Plug 'chrisbra/vim-kconfig'
 Plug 'thomafred/kermitSyntax', { 'rtp': 'vim' }
 
-" FIXME needed?
-" Plug 'cespare/vim-toml'
-" Plug 'maralla/vim-toml-enhance'
-" Plug 'fidian/hexmode'
-" Plug 'junegunn/fzf'
-" Plug 'ncm2/ncm2'
-" Plug 'roxma/nvim-yarp'
-
 call plug#end()
 
 " Normal vim options
