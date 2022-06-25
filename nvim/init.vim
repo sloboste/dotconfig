@@ -74,7 +74,7 @@ colorscheme solarized
 " No Syntastic on these filetypes
 let g:syntastic_mode_map = {
     \ "mode": "active",
-    \ "passive_filetypes": ["c", "cc", "cpp", "h", "hpp", "python", "rs", "rust"]}
+    \ "passive_filetypes": ["c", "cc", "cpp", "h", "hpp", "cuda", "python", "rs", "rust"]}
 
 " Syntastic status line
 set statusline+=%#warningmsg#
