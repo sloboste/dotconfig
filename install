@@ -62,6 +62,7 @@ main() {
 
     git sumbodule update --init --recursive
 
+    install_system_config
     install_shell_config
     install_editor_config
     install_git_config
