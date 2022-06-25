@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 readonly CONFIG_DIR="${HOME}/.config"
+readonly CONFIG_MISC_DIR="${CONFIG_DIR}/misc"
 readonly CONFIG_SUBMODULES="${CONFIG_DIR}/submodules"
 readonly BASHRC="${HOME}/.bashrc"
 
@@ -34,7 +35,7 @@ EOF
 }
 
 install_system_config() {
-    cp "${CONFIG_DIR}/misc/45-backlight.rules" /etc/udev/rules.d/
+    cp "${CONFIG_MISC_DIR}/45-backlight.rules" /etc/udev/rules.d/
     cp "${CONFIG_DIR}/sway/sway-nvidia.desktop" /usr/share/wayland-sessions/
 }
 
@@ -55,7 +56,7 @@ install_git_config() {
     git config --global user.name "Steven Sloboda"
 
     git config --global commit.gpgsign true
-    git config --global core.excludesfile "${CONFIG_DIR}/misc/gitignore_global"
+    git config --global core.excludesfile "${CONFIG_MISC_DIR}/gitignore_global"
 }
 
 main() {
