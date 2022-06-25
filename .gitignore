@@ -1,5 +1,7 @@
 /dconf
+/freerdp
 /gtk-3.0
+/htop
 /pulse
 /nvim/autoload
 /nvim/bundle
