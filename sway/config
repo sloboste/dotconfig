@@ -209,8 +209,8 @@ client.unfocused        #002b36  #073642     #839496  #073642    #586e75
 client.urgent           #002b36  #dc322f     #fdf6e3  #002b36    #586e75
 
 set $backlight /sys/class/backlight/intel_backlight/brightness
-bindsym XF86MonBrightnessUp exec echo $(( $(cat $backlight) + 1000 )) > $backlight
-bindsym XF86MonBrightnessDown exec echo $(( $(cat $backlight) - 1000 )) > $backlight
+bindsym XF86MonBrightnessUp exec echo $(( $(cat $backlight) + 5000 )) > $backlight
+bindsym XF86MonBrightnessDown exec echo $(( $(cat $backlight) - 5000 )) > $backlight
 
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 bindsym XF86AudioRaiseVolume exec pactl -- set-sink-volume 0 +2%
