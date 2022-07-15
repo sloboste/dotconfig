@@ -46,9 +46,9 @@ install_editor_config() {
 
     cat << EOF >> "${BASHRC}"
 
-EDITOR=${editor}"
-SUDO_EDITOR=${editor}"
-alias vim=${editor}"
+EDITOR=${editor}
+SUDO_EDITOR=${editor}
+alias vim=${editor}
 EOF
 
     git config --global core.editor "${editor}"
