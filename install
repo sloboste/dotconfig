@@ -33,6 +33,8 @@ unset SSH_ENV_FILE
 if ! ssh-add -lq > /dev/null; then
     ssh-add
 fi
+
+alias cgrep='grep --color=always'
 EOF
 }
 
