@@ -71,6 +71,9 @@ set termguicolors
 set background=dark
 colorscheme solarized
 
+" Indentline is stupid and conceals quotes
+autocmd filetype dockerfile let g:indentLine_setConceal=0
+
 " No Syntastic on these filetypes
 let g:syntastic_mode_map = {
     \ "mode": "active",
