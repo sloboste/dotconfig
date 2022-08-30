@@ -215,6 +215,8 @@ bindsym XF86MonBrightnessDown exec echo $(( $(cat $backlight) - 5000 )) > $backl
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 bindsym XF86AudioRaiseVolume exec pactl -- set-sink-volume 0 +2%
 bindsym XF86AudioLowerVolume exec pactl -- set-sink-volume 0 -2%
+# TODO mute/unmute mic and set volume level
+# bindsym ???? exec pactl set-source-volume 1 20000 # A reasonable level
 
 # Notifications
 bindsym $mod+n exec makoctl dismiss
