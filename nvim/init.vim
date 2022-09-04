@@ -19,6 +19,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+
 Plug 'neovim/nvim-lspconfig'
 Plug 'vim-syntastic/syntastic'
 
@@ -206,4 +209,49 @@ lua << EOF
     }
 EOF
 
+" Pickers
+lua << EOF
+    local default_picker_opts = {
+        theme = "ivy",
+        -- TODO Define a custom layout strategy that is bounded by the buffer window size not the
+        -- overall window size, i.e., if we have a vertical split, keep the picker confined to the
+        -- window from which it was opened.
+        layout_strategy = "vertical",
+        layout_config = {
+            anchor = "CENTER",
+            height = { padding = 0 },
+            mirror = false,
+            width = { padding = 0 },
+        },
+    }
 
+    require('telescope').setup{
+        defaults = {
+            mappings = {
+                i = {
+                    -- actions.which_key shows the mappings for your picker.
+                    ["<C-h>"] = "which_key"
+                }
+            }
+        },
+        pickers = {
+            buffers = default_picker_opts,
+            current_buffer_fuzzy_find = default_picker_opts,
+            find_files = default_picker_opts,
+            grep_string = default_picker_opts,
+            help_tags = default_picker_opts,
+            live_grep = default_picker_opts,
+            man_pages = default_picker_opts,
+        },
+        extensions = {}
+    }
+EOF
+" TODO move this config to lua
+" Note that <C-_> is control plus forward slash.
+nnoremap <C-_>b <cmd>Telescope buffers<cr>
+nnoremap <C-_>/ <cmd>Telescope current_buffer_fuzzy_find<cr>
+nnoremap <C-_>f <cmd>Telescope find_files<cr>
+nnoremap <C-_>g* <cmd>Telescope grep_string<cr>
+nnoremap <C-_>h <cmd>Telescope help_tags<cr>
+nnoremap <C-_>gg <cmd>Telescope live_grep<cr>
+nnoremap <C-_>m <cmd>Telescope man_pages<cr>
