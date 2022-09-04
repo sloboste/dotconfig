@@ -137,6 +137,14 @@ let g:indentLine_color_term = 0
 let g:indentLine_fileTypeExclude = ['markdown']
 let g:vim_json_syntax_conceal = 0
 
+" SimpylFold better Python code folding
+let g:SimpylFold_fold_import = 0
+let g:SimpylFold_fold_docstring = 0
+let g:SimpylFold_docstring_preview = 1
+
+" Rust
+let g:rust_recommended_style = 1
+
 " Language Server syntax checking
 lua << EOF
     -- Mappings.
@@ -198,10 +206,4 @@ lua << EOF
     }
 EOF
 
-" SimpylFold better Python code folding
-let g:SimpylFold_fold_import = 0
-let g:SimpylFold_fold_docstring = 0
-let g:SimpylFold_docstring_preview = 1
 
-" Rust
-let g:rust_recommended_style = 1
