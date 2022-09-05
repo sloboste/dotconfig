@@ -25,7 +25,7 @@ input "*" {
     xkb_options ctrl:swapcaps
 
     # libinput config
-    accel_profile flat
+    accel_profile adaptive
     click_method clickfinger
     drag disabled
     drag_lock disabled
@@ -33,7 +33,7 @@ input "*" {
     left_handed disabled
     middle_emulation enabled
     natural_scroll disabled
-    pointer_accel 1
+    pointer_accel 0
     scroll_method two_finger
     tap disabled
 }
