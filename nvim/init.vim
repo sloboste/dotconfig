@@ -73,6 +73,7 @@ set hidden
 set termguicolors
 set background=dark
 colorscheme solarized
+nnoremap <C-C><C-C> <cmd>let &background = ( &background == "dark"? "light" : "dark" )<cr>
 
 " Indentline is stupid and conceals quotes
 autocmd filetype dockerfile let g:indentLine_setConceal=0
