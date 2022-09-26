@@ -32,6 +32,7 @@ Plug 'Matt-Deacalion/vim-systemd-syntax'
 Plug 'sloboste/vim-groovy-syntax'
 Plug 'chrisbra/vim-kconfig'
 Plug 'thomafred/kermitSyntax', { 'rtp': 'vim' }
+Plug 'tomlion/vim-solidity'
 
 call plug#end()
 
@@ -207,6 +208,17 @@ lua << EOF
     require('lspconfig')['pyright'].setup{
         on_attach = on_attach,
         flags = lsp_flags,
+    }
+    -- Install: https://solang.readthedocs.io/en/latest/installing.html#option-2-download-release-binaries
+    require('lspconfig').solang.setup{
+        on_attach = on_attach,
+        flags = lsp_flags,
+        cmd = {
+            "solang",
+            "language-server",
+            "--target", -- FIXME dynamically change target?
+            "evm",
+        },
     }
 EOF
 
