@@ -220,6 +220,11 @@ lua << EOF
             "evm",
         },
     }
+    -- Install: `npm install -g typescript typescript-language-server`
+    require('lspconfig').tsserver.setup{
+        on_attach = on_attach,
+        flags = lsp_flags,
+    }
 EOF
 
 " Pickers
