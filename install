@@ -41,6 +41,11 @@ EOF
 install_system_config() {
     cp "${CONFIG_MISC_DIR}/45-backlight.rules" /etc/udev/rules.d/
     cp "${CONFIG_DIR}/sway/sway-nvidia.desktop" /usr/share/wayland-sessions/
+
+    cat << EOF >> "${BASHRC}"
+# FIXME Should this be set in desktop entry file for sway?
+XDG_CURRENT_DESKTOP=sway
+EOF
 }
 
 install_editor_config() {
