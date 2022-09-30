@@ -66,6 +66,10 @@ install_git_config() {
 
     git config --global commit.gpgsign true
     git config --global core.excludesfile "${CONFIG_MISC_DIR}/gitignore_global"
+
+    cat << EOF >> "${BASHRC}"
+GPG_TTY="\$(tty)"
+EOF
 }
 
 main() {
