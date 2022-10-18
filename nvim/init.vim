@@ -77,7 +77,8 @@ colorscheme solarized
 nnoremap <C-C><C-C> <cmd>let &background = ( &background == "dark"? "light" : "dark" )<cr>
 
 " Indentline is stupid and conceals quotes
-autocmd filetype dockerfile let g:indentLine_setConceal=0
+autocmd filetype dockerfile setlocal conceallevel=0
+autocmd filetype json setlocal conceallevel=0
 
 " No Syntastic on these filetypes
 let g:syntastic_mode_map = {
