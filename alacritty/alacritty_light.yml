@@ -1,0 +1,3 @@
+import:
+- /home/steven/.config/alacritty/alacritty_base.yml
+- /home/steven/.config/submodules/alacritty-theme/themes/solarized_light.yaml

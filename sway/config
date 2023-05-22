@@ -222,3 +222,6 @@ bindsym XF86AudioLowerVolume exec pactl -- set-sink-volume 0 -2%
 bindsym $mod+n exec makoctl dismiss
 bindsym $mod+shift+n exec makoctl restore
 exec mako
+
+# Terminal colorschemes
+bindsym $mod+y exec /$HOME/.config/alacritty/swap-colorschemes

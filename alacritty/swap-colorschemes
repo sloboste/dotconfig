@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+# shellcheck disable=SC2155
+readonly PROG_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+readonly CONFIG="alacritty.yml"
+readonly CONFIG_DARK="alacritty_dark.yml"
+readonly CONFIG_LIGHT="alacritty_light.yml"
+
+main() {
+    pushd "${PROG_DIR}"
+
+    local active_config
+    active_config="$(basename "$(realpath "${CONFIG}")")"
+    case "${active_config}" in
+        "${CONFIG_DARK}")
+            active_config="${CONFIG_LIGHT}"
+            ;;
+        *)
+            active_config="${CONFIG_DARK}"
+            ;;
+    esac
+
+    rm -f "${CONFIG}"
+    ln -s "${active_config}" "${CONFIG}"
+    alacritty msg config -w-1 "${CONFIG}"
+
+    popd
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    set -e
+    set -x # FIXME remove
+    main "$@"
+fi
