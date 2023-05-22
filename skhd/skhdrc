@@ -1,4 +1,5 @@
 alt - return : open -na /Applications/Alacritty.app/Contents/MacOS/alacritty
+alt - y : /Users/steven/.config/alacritty/swap-colorschemes
 
 alt + shift - c : brew services restart yabai && brew services restart skhd
 

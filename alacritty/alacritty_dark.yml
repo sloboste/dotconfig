@@ -1,0 +1,3 @@
+import:
+- /Users/steven/.config/alacritty/alacritty_base.yml
+- /Users/steven/.config/submodules/alacritty-theme/themes/solarized_dark.yaml
