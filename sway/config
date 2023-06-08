@@ -7,13 +7,10 @@ set $term alacritty
 
 # Displays
 set $laptop eDP-1
-# FIXME gpu problems?
-# set $monitor DP-1
-# set $monitor_right DP-2
-# output $laptop position 0,1800
-# output $monitor_left position 0,0
-# output $monitor_right position 1920,0
-# workspace 2 output $monitor_right
+set $monitor DP-3
+output $monitor position 0,0
+output $laptop position 320,1440
+workspace 3 output $monitor
 
 bindswitch lid:on output $laptop disable
 bindswitch lid:off output $laptop enable
