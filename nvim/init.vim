@@ -32,7 +32,7 @@ Plug 'Matt-Deacalion/vim-systemd-syntax'
 Plug 'sloboste/vim-groovy-syntax'
 Plug 'chrisbra/vim-kconfig'
 Plug 'thomafred/kermitSyntax', { 'rtp': 'vim' }
-Plug 'tomlion/vim-solidity'
+Plug 'kergoth/vim-bitbake'
 
 call plug#end()
 

@@ -7,7 +7,7 @@ set $term alacritty
 
 # Displays
 set $laptop eDP-1
-set $monitor DP-3
+set $monitor DP-1
 output $monitor position 0,0
 output $laptop position 320,1440
 workspace 3 output $monitor
@@ -16,7 +16,7 @@ bindswitch lid:on output $laptop disable
 bindswitch lid:off output $laptop enable
 
 # Set the background image
-output "*" bg $HOME/wallpaper.png fill
+output "*" bg $HOME/wallpaper.jpg fill
 
 input "*" {
     xkb_options ctrl:swapcaps
@@ -209,11 +209,12 @@ set $backlight /sys/class/backlight/intel_backlight/brightness
 bindsym XF86MonBrightnessUp exec echo $(( $(cat $backlight) + 5000 )) > $backlight
 bindsym XF86MonBrightnessDown exec echo $(( $(cat $backlight) - 5000 )) > $backlight
 
-bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
-bindsym XF86AudioRaiseVolume exec pactl -- set-sink-volume 0 +2%
-bindsym XF86AudioLowerVolume exec pactl -- set-sink-volume 0 -2%
+set $audio_sink 3
+bindsym XF86AudioMute exec pactl set-sink-mute 3 toggle
+bindsym XF86AudioRaiseVolume exec pactl -- set-sink-volume 3 +2%
+bindsym XF86AudioLowerVolume exec pactl -- set-sink-volume 3 -2%
 # TODO mute/unmute mic and set volume level
-# bindsym ???? exec pactl set-source-volume 1 20000 # A reasonable level
+# bindsym ???? exec pactl set-source-volume 4 20000 # A reasonable level
 
 # Notifications
 bindsym $mod+n exec makoctl dismiss

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-readonly CONFIG_DIR="${HOME}/.config"
+readonly INSTALL_DIR="${HOME}/.config"
+readonly CONFIG_DIR="${INSTALL_DIR}/config"
 readonly CONFIG_MISC_DIR="${CONFIG_DIR}/misc"
 readonly CONFIG_SUBMODULES="${CONFIG_DIR}/submodules"
 readonly BASHRC="${HOME}/.bashrc"
@@ -16,6 +17,7 @@ export PATH="${PATH}:${HOME}/.local/bin"
 eval \$(dircolors "${CONFIG_SUBMODULES}/dircolors-solarized/dircolors.ansi-dark")
 EOF
 
+    # FIXME account for swapper
     local -r alacritty_dir="${CONFIG_DIR}/alacritty"
     local -r alacritty_config="${alacritty_dir}/alacritty.yml"
     mkdir -p "${alacritty_dir}"
@@ -40,11 +42,10 @@ EOF
 
 install_system_config() {
     cp "${CONFIG_MISC_DIR}/45-backlight.rules" /etc/udev/rules.d/
-    cp "${CONFIG_DIR}/sway/sway-nvidia.desktop" /usr/share/wayland-sessions/
 
     cat << EOF >> "${BASHRC}"
-# FIXME Should this be set in desktop entry file for sway?
-XDG_CURRENT_DESKTOP=sway
+
+export GPG_TTY="\$(tty)"
 EOF
 }
 
@@ -71,7 +72,13 @@ install_git_config() {
 main() {
     pushd "${CONFIG_DIR}"
 
-    git sumbodule update --init --recursive
+    git submodule update --init --recursive
+
+    pushd "${INSTALL_DIR}"
+    ln -s "${CONFIG_DIR}/alacritty" ./
+    ln -s "${CONFIG_DIR}/sway" ./
+    ln -s "${CONFIG_DIR}/nvim" ./
+    popd
 
     install_system_config
     install_shell_config
