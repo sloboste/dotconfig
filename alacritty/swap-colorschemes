@@ -22,7 +22,7 @@ main() {
 
     rm -f "${CONFIG}"
     ln -s "${active_config}" "${CONFIG}"
-    alacritty msg config -w-1 "${CONFIG}"
+    alacritty msg config -w-1 --reset
 
     popd
 }
