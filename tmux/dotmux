@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -e -o pipefail
+
+if [ "$#" -ge 1 ]; then
+    session="$1"
+elif ! session="$(tmux list-sessions 2>/dev/null | head -n 1 | cut -d ':' -f 1)"; then
+    tmux
+fi
+if ! tmux has-session -t "$session"; then
+    exit 1
+fi
+tmux attach-session -t "$session"
