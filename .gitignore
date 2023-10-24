@@ -1,8 +1,9 @@
-/dconf
-/freerdp
-/gtk-3.0
-/htop
-/libreoffice
-/nvim/autoload
-/nvim/bundle
-/pulse
+*
+|alacritty
+|install
+|kermit
+|misc
+|nvim
+|submodules
+|sway
+|tmux
