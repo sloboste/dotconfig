@@ -1,0 +1,6 @@
+set line /dev/ttyUSB0
+set baud 115200
+set handshake none
+set carrier-watch off
+set flow-control none
+set proto ZMODEM rz {rz -a} {sz %s} {sz -a %s} rz rz

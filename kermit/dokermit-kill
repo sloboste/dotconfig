@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -e -o pipefail
+PID="$(lsof "$1" | grep kermit | tr -s ' ' | cut -d ' ' -f 2)"
+kill -9 "$PID"

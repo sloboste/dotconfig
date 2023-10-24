@@ -1,0 +1,18 @@
+#!/usr/bin/kermit +
+#
+if not defined \%1 exit 1 "no TTY specified"
+run \%0-kill \%1
+set line \%1
+
+if defined \%2 run bash -c 'printf "\\033]0;\%2\\007"'
+
+if defined \%3  take \%3
+
+nopush
+set baud 115200
+set handshake none
+set carrier-watch off
+set flow-control none
+set proto ZMODEM rz {rz -a} {sz %s} {sz -a %s} rz rz
+connect
+exit 0
