@@ -1,0 +1,93 @@
+# General
+command_key = ":"
+#initial_screen = "library"
+#use_nerdfont = false
+#flip_status_indicators = false
+#backend =
+#backend_device =
+#audio_cache = true
+#audio_cache_size =
+#volnorm = false
+#folnorm_pregain = 0.0
+default_keybindings = false
+#notify = false
+#bitrate = 320
+#gapless = true
+#shuffle = false
+#repeat = "off"
+#playback_state = "Paused"
+library_tabs = [ "tracks", "browse", "playlists", "artists" ]
+#cover_max_scale = 1.0
+hide_display_names = true
+statusbar_format = "%saved %title - %artists"
+[track_format]
+left = "%saved %title - %artists"
+center = "%album"
+right = "%duration"
+
+#[notification_format]
+
+[theme]
+background = "background"
+primary = "bright black"
+secondary = "yellow"
+title = "yellow"
+playing = "green"
+playing_selected = "green"
+playing_bg = "background"
+highlight = "white"
+highlight_bg = "black"
+error = "white"
+error_bg = "red"
+statusbar = "green"
+statusbar_progress = "blue"
+statusbar_bg = "black"
+cmdline = "yellow"
+cmdline_bg = "light black"
+
+#[MODIFIER+]<CHAR|NAMED_KEY>
+#where:
+#  MODIFIER: Shift|Alt|Ctrl
+#  CHAR: Any printable character
+#  NAMED_KEY: Enter|Space|Tab|Backspace|Esc|Left|Right|Up|Down
+#    |Ins|Del|Home|End|PageUp|PageDown|PauseBreak|NumpadCenter
+#    |F0|F1|F2|F3|F4|F5|F6|F7|F8|F9|F10|F11|F12
+[keybindings]
+# Media Controls
+"p" = "play"
+#"Shift+Enter" = "play" # FIXME doesn't work?
+"Space" = "playpause"
+"<" = "previous"
+">" = "next"
+"{" = "seek -10000"
+"}" = "seek +10000"
+"z" = "shuffle"
+"Ctrl+z" = "repeat"
+# Actions
+"m" = "save"
+"q" = "queue"
+# Navigation
+"?" = "help"
+"Esc" = "back"
+#"Ctrl+[" = "back" # FIXME doesn't work?
+"Enter" = "open selected"
+"Ctrl+f" = "focus search"
+"Ctrl+l" = "focus library"
+"Ctrl+q" = "focus queue"
+"Shift+n" = "jumpprevious"
+"n" = "jumpnext"
+#"'" = "move playing" # FIXME doesn't work?
+"h" = "move left 1"
+"j" = "move down 1"
+"k" = "move up 1"
+"l" = "move right 1"
+"G" = "move bottom"
+"g" = "move top"
+"Ctrl+e" = "move down 1"
+"Ctrl+y" = "move up 1"
+"Ctrl+d" = "move down 10"
+"Ctrl+u" = "move up 10"
+"Left" = "move left 1"
+"Down" = "move down 1"
+"Up" = "move up 1"
+"Right" = "move right 1"
