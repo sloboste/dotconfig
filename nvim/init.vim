@@ -80,6 +80,7 @@ nnoremap <C-C><C-C> <cmd>let &background = ( &background == "dark"? "light" : "d
 
 " Indentline is stupid and conceals quotes
 autocmd filetype dockerfile let g:indentLine_setConceal=0
+autocmd filetype c,cpp,bash,sh let g:indentLine_setConceal=1
 
 " Force newstyle comments. Not sure what plugin is reverting this.
 autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
