@@ -33,6 +33,7 @@ Plug 'sloboste/vim-groovy-syntax'
 Plug 'chrisbra/vim-kconfig'
 Plug 'thomafred/kermitSyntax', { 'rtp': 'vim' }
 Plug 'kergoth/vim-bitbake'
+Plug 'isundil/vim-irssi-syntax'
 Plug 'dcharbon/vim-flatbuffers'
 
 call plug#end()
