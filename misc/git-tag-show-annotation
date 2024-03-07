@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -u -o pipefail
+DISPLAY_FORMAT='Tag:%09%09%(refname:short)%0aCommit:%09%09%(object)%0aSubject:%09%(contents:subject)%0aTagger:%09%09%(taggername)%0aDate:%09%09%(taggerdate)%0aSignature:%0a%(contents:signature)%0aBody:%0a%0a%(contents:body)'
+git tag -l --format="${DISPLAY_FORMAT}" --sort=-taggerdate "$@"
