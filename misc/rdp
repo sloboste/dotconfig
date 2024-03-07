@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#
+# Note: wlfreerdp is available in freerdp2-wayland package on ubuntu/debian.
+
+set -e
+
+WIN_IP=0.0.0.0 # FIXME
+WIN_PORT=3389
+WIN_USERNAME=".\\steven.sloboda"
+SHARED_DIR="${HOME}/windows-rdp-share"
+
+wlfreerdp \
+    "/v:${WIN_IP}:${WIN_PORT}" \
+    "/u:${WIN_USERNAME}" \
+    "/drive:${SHARED_DIR},LINUX-SHARE" \
+    /smart-sizing \
+    /kbd-remap:29=58,58=29
