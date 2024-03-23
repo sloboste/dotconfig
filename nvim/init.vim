@@ -25,6 +25,7 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'neovim/nvim-lspconfig'
 Plug 'vim-syntastic/syntastic'
 
+Plug 'elzr/vim-json' " the built-in json syntax does not play nice with indentline
 Plug 'tmhedberg/SimpylFold'
 Plug 'mesonbuild/meson', { 'rtp': 'data/syntax-highlighting/vim' }
 Plug 'rust-lang/rust.vim'
