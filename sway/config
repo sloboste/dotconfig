@@ -7,7 +7,7 @@ set $term alacritty
 
 # Displays
 set $laptop eDP-1
-set $monitor DP-3
+set $monitor DP-1
 output $monitor position 0,0
 output $laptop position 320,1440
 workspace 3 output $monitor
