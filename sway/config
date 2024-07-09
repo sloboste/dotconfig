@@ -7,10 +7,15 @@ set $term alacritty
 
 # Displays
 set $laptop eDP-1
-set $monitor DP-1
-output $monitor position 0,0
-output $laptop position 320,1440
-workspace 3 output $monitor
+set $monitor_low DP-4
+set $monitor_high DP-6
+output $monitor_high position 0,0
+output $monitor_low position 0,2160
+output $laptop position 0,4320
+#output $laptop position 320,1440
+workspace 10 output $monitor_high
+workspace 9 output $monitor_low
+workspace 1 output $monitor_low
 
 bindswitch lid:on output $laptop disable
 bindswitch lid:off output $laptop enable
