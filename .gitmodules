@@ -3,4 +3,4 @@
 	url = git@github.com:seebi/dircolors-solarized.git
 [submodule "submodules/alacritty-theme"]
 	path = submodules/alacritty-theme
-	url = git@github.com:eendroroy/alacritty-theme.git
+	url = git@github.com:alacritty/alacritty-theme.git

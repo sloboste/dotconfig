@@ -5,17 +5,23 @@ set $mod Mod1
 
 set $term alacritty
 
+# XXX: If mouse clicks/movement is not registering occasionally, then check that the monitor
+#      positions are correct. First noticed this with steam games where mouse on the main window of
+#      the game would not register clicks.
+
 # Displays
 set $laptop eDP-1
 set $monitor_low DP-4
-set $monitor_high DP-6
-output $monitor_high position 0,0
-output $monitor_low position 0,2160
+#set $monitor_high DP-6
+#output $monitor_high position 0,0
+#output $monitor_low position 0,2160
 output $laptop position 0,4320
+output $monitor_low position 0,0
+output $laptop position 0,2160
 #output $laptop position 320,1440
-workspace 10 output $monitor_high
-workspace 9 output $monitor_low
-workspace 1 output $monitor_low
+workspace 10 output $monitor_low
+workspace 9 output $laptop
+workspace 1 output $laptop
 
 bindswitch lid:on output $laptop disable
 bindswitch lid:off output $laptop enable
@@ -227,3 +233,35 @@ exec mako
 
 # Terminal colorschemes
 bindsym $mod+y exec /$HOME/.config/alacritty/swap-colorschemes
+
+# Explicitly label which windows are using xwayland.
+for_window [shell="xwayland"] title_format "[XWayland] %title"
+
+# Use keyboard as mouse
+mode "keycursor" {
+    bindsym $mod+Shift+Escape mode "default"
+
+    # Move cursor slow
+    bindsym Control+Left seat - cursor move -10 0
+    bindsym Control+Down seat - cursor move 0 +10
+    bindsym Control+Up seat - cursor move 0 -10
+    bindsym Control+Right seat - cursor move +10 0
+
+    # Move cursor fast
+    bindsym Control+Shift+Left seat - cursor move -50 0
+    bindsym Control+Shift+Down seat - cursor move 0 +50
+    bindsym Control+Shift+Up seat - cursor move 0 -50
+    bindsym Control+Shift+Right seat - cursor move +50 0
+
+    # Left click
+    bindsym --no-repeat Control+Return seat * cursor press button1
+    bindsym --release Control+Return seat * cursor release button1
+
+    # Right click
+    bindsym --no-repeat Control+Shift+Return seat * cursor press button3
+    bindsym --release Control+Shift+Return seat * cursor release button3
+
+    # FIXME scroll and scroll button?
+    #bindsym Shift+Return exec 'swaymsg seat - cursor press button3 && swaymsg seat - cursor release button3'
+}
+bindsym $mod+Shift+Escape mode "keycursor"

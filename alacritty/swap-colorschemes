@@ -2,9 +2,10 @@
 
 # shellcheck disable=SC2155
 readonly PROG_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
-readonly CONFIG="alacritty.yml"
-readonly CONFIG_DARK="alacritty_dark.yml"
-readonly CONFIG_LIGHT="alacritty_light.yml"
+readonly FMT="toml" # "yaml"
+readonly CONFIG="alacritty.${FMT}"
+readonly CONFIG_DARK="alacritty_dark.${FMT}"
+readonly CONFIG_LIGHT="alacritty_light.${FMT}"
 
 main() {
     pushd "${PROG_DIR}"
