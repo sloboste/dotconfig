@@ -265,3 +265,6 @@ mode "keycursor" {
     #bindsym Shift+Return exec 'swaymsg seat - cursor press button3 && swaymsg seat - cursor release button3'
 }
 bindsym $mod+Shift+Escape mode "keycursor"
+
+# Disable laptop screen for apps that have issues with mouse focus
+bindsym $mod+shift+g output $laptop toggle
