@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=Sway with Nvidia
 Comment=An i3-compatible Wayland compositor
-Exec=sway --unsupported-gpu
+#Exec=sway --unsupported-gpu
+Exec=/home/steven/.config/sway/run-sway
 Type=Application

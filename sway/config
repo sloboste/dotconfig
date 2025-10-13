@@ -268,3 +268,6 @@ bindsym $mod+Shift+Escape mode "keycursor"
 
 # Disable laptop screen for apps that have issues with mouse focus
 bindsym $mod+shift+g output $laptop toggle
+
+# Needed for xdg-desktop-portal webrtc screen share firefox
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
