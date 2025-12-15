@@ -35,6 +35,7 @@ Plug 'thomafred/kermitSyntax', { 'rtp': 'vim' }
 Plug 'kergoth/vim-bitbake'
 Plug 'isundil/vim-irssi-syntax'
 Plug 'dcharbon/vim-flatbuffers'
+Plug 'oxalica/nil'
 
 call plug#end()
 
@@ -231,6 +232,8 @@ lua << EOF
         on_attach = on_attach,
         flags = lsp_flags,
     }
+    -- Install: `cargo install --git https://github.com/oxalica/nil nil`
+    require('lspconfig').nil_ls.setup{}
 EOF
 
 " Pickers
