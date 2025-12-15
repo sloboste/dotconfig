@@ -1,6 +1,6 @@
 [submodule "submodules/dircolors-solarized"]
 	path = submodules/dircolors-solarized
-	url = git@github.com:seebi/dircolors-solarized.git
+	url = https://github.com/seebi/dircolors-solarized.git
 [submodule "submodules/alacritty-theme"]
 	path = submodules/alacritty-theme
-	url = git@github.com:alacritty/alacritty-theme.git
+	url = https://github.com/alacritty/alacritty-theme.git
