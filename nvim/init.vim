@@ -157,6 +157,12 @@ let g:SimpylFold_docstring_preview = 1
 " Rust
 let g:rust_recommended_style = 1
 
+" Inline markdown syntax highlighting
+let g:markdown_fenced_languages = [
+    \ 'bash', 'c', 'cpp', 'go', 'html', 'javascript', 'lua', 'nix', 'perl', 'python', 'rust', 'sh',
+    \ 'typescript', 'vim',
+\ ]
+
 " Language Server syntax checking
 lua << EOF
     -- Mappings.
