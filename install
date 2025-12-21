@@ -14,6 +14,8 @@ install_shell_config() {
 export PATH="${PATH}:${HOME}/.local/bin"
 
 eval \$(dircolors "${CONFIG_SUBMODULES}/dircolors-solarized/dircolors.ansi-dark")
+
+export PYTHON_BASIC_REPL=1 # They broke vi mode
 EOF
 
     local -r alacritty_dir="${CONFIG_DIR}/alacritty"
